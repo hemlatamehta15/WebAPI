@@ -31,7 +31,7 @@ namespace WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             var connection = Configuration.GetConnectionString("InventaryDatabase");
-            services.AddDbContextPool<InventoryContext>(options=>options.UseSqlServer(connection));
+            services.AddDbContextPool<InventoryContext>(options=>options.UseSqlite(connection));
             services.AddControllers();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
             {

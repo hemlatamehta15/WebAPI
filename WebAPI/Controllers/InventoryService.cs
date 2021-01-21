@@ -23,7 +23,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Products>>> GetProducts()
+        public async Task<ActionResult<IEnumerable<Products>>> GetProductsList()
         {
             return await _context.Products.ToListAsync();
         }
@@ -47,7 +47,7 @@ namespace WebAPI.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutProducts(int id, Products products)
+        public async Task<ActionResult<Products>> EditProducts(int id, Products products)
         {
             if (id != products.ProductId)
             {
@@ -72,14 +72,14 @@ namespace WebAPI.Controllers
                 }
             }
 
-            return NoContent();
+            return products;
         }
 
         // POST: api/Products
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
-        public async Task<ActionResult<Products>> PostProducts(Products products)
+        public async Task<ActionResult<Products>> AddProducts(Products products)
         {
             _context.Products.Add(products);
             await _context.SaveChangesAsync();
